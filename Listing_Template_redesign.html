@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<link href="https://fonts.googleapis.com/css?family=Heebo:400,500,700,800" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<style>
+		*{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+		img{max-width:100%}
+		p:last-child{margin-bottom:0!important}
+		.bodyWrapper{padding:0;margin:0;background:#f9f9f9;font-family:'Heebo',sans-serif}
+		#LeftPanelLabel{display:none;position:fixed;z-index:99999;width:40px;height:40px;border:2px solid #f00;border-left:none;background:#fff;color:#f00;font-size:20px;font-weight:bold;text-align:center;left:-2px;top:200px;box-shadow:2px 2px 2px rgba(0,0,0,.5);cursor:pointer;-webkit-transition:all .5s ease-in;-moz-transition:all .5s ease-in;-ms-transition:all .5s ease-in;-o-transition:all .5s ease-in;transition:all .5s ease-in}
+		.StoreHeader{padding:0;margin:0 0 50px;background:#fff;font-family:'Heebo',sans-serif}
+		.StoreHeader img{max-width:100%}
+		.topHeader{padding:25px 0 5px;background-color:#fff}
+		.welcome{padding:5px 15px;color:#252525!important;font-size:14px;font-weight:500;line-height:20px;letter-spacing:normal}
+		.topLinks{padding:5px 0;float:right}
+		.topLinks ul{display:table;padding:0;margin:0 auto;float:right;overflow:hidden;list-style:none}
+		.topLinks ul li{display:block;float:left;padding:0 15px;overflow:hidden}
+		.topLinks ul li a{display:block;text-decoration:none;color:#252525!important;font-size:14px;font-weight:500;line-height:20px;letter-spacing:normal;transition:all .2s ease-in;-webkit-transition:all .2s ease-in;-moz-transition:all .2s ease-in;-ms-transition:all .2s ease-in}
+		.topLinks ul li a:hover{color:#f00!important}
+		.topLinks ul li a i{font-size:16px;width:20px}
+		.Header{padding:0;background:#000;overflow:hidden}
+		.LogoHolder{height:100px;padding:20px 25px 20px 15px;background:#f00;text-align:right;float:left;position:relative}
+		.LogoHolder:before{content:'';width:2500px;height:100%;background:#f00;position:absolute;top:0;right:100%}
+		.LogoHolder:after{content:'';width:0;height:0;background:#f00;position:absolute;bottom:0;right:-40px;border-top:100px solid #f00;border-right:40px solid #000}
+		.PromoHolder{height:100px;padding:20px 0;float:right;overflow:hidden}
+		.PromoHolder ul{display:block;padding:0;margin:0 auto;list-style:none;overflow:hidden}
+		.PromoHolder ul li{display:block;padding:10px 15px;float:left;overflow:hidden}
+		.PromoIcon{float:left;padding-right:10px;text-align:center}
+		.PromoIcon i{color:#f00;font-size:28px;font-weight:normal;line-height:40px}
+		.PromoText{float:Right}
+		.PromoText strong{display:block;color:#fff;font-size:15px;font-weight:500;line-height:20px;letter-spacing:1px}
+		.PromoText span{display:block;color:#f00;font-size:13px;font-weight:400;line-height:20px;letter-spacing:1px}
+		#navigation{padding:0;background:#fff}
+		#innerNav{height:50px;padding:15px 0;position:relative}
+		#innerNav label[for=CSSmenu]{display:none}
+		#innerNav label[for=CSSmenu] i{width:20px}
+		#storeMenu{display:block;margin:0;padding:0;list-style:none;overflow:hidden}
+		#storeMenu li{display:block;float:left;padding:0 25px}
+		#storeMenu li:first-child{padding-left:0}
+		#storeMenu li a{display:block;text-decoration:none;padding:0;margin:0;color:#252525!important;font-size:15px;font-weight:800;line-height:20px;letter-spacing:normal;text-transform:uppercase;transition:all .2s ease-in;-webkit-transition:all .2s ease-in;-moz-transition:all .2s ease-in;-ms-transition:all .2s ease-in;font-family:'Heebo',sans-serif}
+		#storeMenu li a:hover{color:#f00!important}
+		.SiteMap{padding:30px 0;background-color:#000;background-image:url(https://dl.dropbox.com/s/sokhpmsocxk3p3t/car-bg.png);background-repeat:no-repeat;background-position:right center}
+		.SiteMap h2{display:block;margin:0;padding:0;color:#fff;font-size:20px;font-weight:800;line-height:30px;letter-spacing:3px;text-align:left;text-transform:uppercase}
+		.SiteMapNavigator{display:block;height:20px}
+		.SiteMapNavigator ul.Devin{display:block!important;margin:0!important;padding:0!important;overflow:hidden;list-style:none}
+		.SiteMapNavigator ul.Devin li{display:block!important;float:left;color:#fff!important;font-size:12px!important;font-weight:400!important;line-height:20px;letter-spacing:1px}
+		.SiteMapNavigator ul.Devin li a{display:block!important;text-decoration:none!important;float:left;color:rgba(255,255,255,.5)!important;font-size:12px!important;font-weight:400!important;line-height:20px;letter-spacing:1px}
+		.SiteMapNavigator ul.Devin li a:hover{color:rgba(255,255,255,1)!important}
+		.SiteMapNavigator ul.Devin li span{display:block!important;float:left;padding:0 10px}
+		.SiteMapNavigator ul.Devin li b{display:block!important;font-weight:400!important}
+		.mainBody{padding:0;font-family:'Heebo',sans-serif}
+		.leftContainer{padding:15px;width:300px;float:left}
+		.leftSingle{padding:0;margin:0 0 20px;background:#000}
+		.leftSingle:last-child{margin:0}
+		.leftSingle h2{margin:40px 0 0;display:block;padding:0 0 0 16px;color:#fff;font-size:18px;font-weight:700;line-height:30px;letter-spacing:2px;border-left:4px solid #f00;text-transform:uppercase;font-family:'Heebo',sans-serif}
+		.leftInner{padding:40px 20px}
+		.leftInner ul{padding:0;margin:0;list-style:none}
+		.leftInner ul.lev2{padding:0 0 10px 20px}
+		.leftInner ul li{padding:0;margin:0!important;list-style:none!important}
+		.leftInner ul li a{display:block!important;text-decoration:none!important;padding:10px 0 10px 15px;color:#fff!important;font-size:13px;font-weight:400;line-height:20px;letter-spacing:1px;position:relative;transition:.3s ease-in;-webkit-transition:.2s ease-in;-moz-transition:.2s ease-in;-ms-transition:.2s ease-in;font-family:'Heebo',sans-serif!important}
+		.leftInner ul.lev2 li a{padding:5px 0 5px 15px}
+		.leftInner ul li a:hover{color:#f00!important}
+		.leftInner ul li a:before{content:'\f04d';font-family:fontawesome;font-size:7px;font-weight:normal;position:absolute;width:10px;top:10px;left:0}
+		.leftInner ul.lev2 li a:before{content:'\f105';font-size:13px;top:5px}
+		.leftInner p{margin:0;color:#fff;font-size:13px;font-weight:400;line-height:2;letter-spacing:1px}
+		.leftInner a.button{display:block;width:100%;height:40px;margin:20px 0 0;padding:0;border:0;outline:0;border-radius:0;background:#f00;color:#fff;font-size:15px;font-weight:700;line-height:40px;letter-spacing:2px;text-align:center;text-transform:uppercase;text-decoration:none!important;transition:.3s ease-in;-webkit-transition:.3s ease-in;-moz-transition:.3s ease-in;-ms-transition:.3s ease-in}
+		.leftInner a.button:hover{background:#b00}
+		.rightContainer{padding:15px;width:870px;float:left}
+		.rightSingle{padding:0;margin:0 0 20px;background:#fff;border:1px solid #ccc}
+		.rightSingle h1,.rightSingle h2{display:block;margin:40px 0 0 -1px;padding:0 0 0 17px;color:#000;font-size:18px;font-weight:700;line-height:30px;letter-spacing:2px;border-left:4px solid #f00;text-transform:uppercase;font-family:'Heebo',sans-serif}
+		.rightSingle h1{line-height:1.25;min-height:30px;text-transform:unset}
+		.rightInner{padding:40px 20px;color:#111;font-size:14px;font-weight:400;line-height:1.75;letter-spacing:1px}
+		.imageContainer{width:100%;max-width:600px;margin:0 auto}
+		.bigHolder{padding:5px 5px 15px}
+		.bigSingle{display:none;padding:4px;text-align:center;border:1px solid #ccc}
+		#img_01:checked~.bigHolder .bigSingle:nth-child(1),#img_02:checked~.bigHolder .bigSingle:nth-child(2),#img_03:checked~.bigHolder .bigSingle:nth-child(3),#img_04:checked~.bigHolder .bigSingle:nth-child(4),#img_05:checked~.bigHolder .bigSingle:nth-child(5),#img_06:checked~.bigHolder .bigSingle:nth-child(6),#img_07:checked~.bigHolder .bigSingle:nth-child(7),#img_08:checked~.bigHolder .bigSingle:nth-child(8),#img_09:checked~.bigHolder .bigSingle:nth-child(9),#img_10:checked~.bigHolder .bigSingle:nth-child(10),#img_11:checked~.bigHolder .bigSingle:nth-child(11),#img_12:checked~.bigHolder .bigSingle:nth-child(12){display:block}
+		.smallHolder{padding:0}
+		.smallHolder label{display:block;float:left;width:140px;height:140px;margin:5px;padding:4px;cursor:pointer;overflow:hidden;text-align:center;border:1px solid #ccc}
+		#img_01:checked~.smallHolder label:nth-child(1),#img_02:checked~.smallHolder label:nth-child(2),#img_03:checked~.smallHolder label:nth-child(3),#img_04:checked~.smallHolder label:nth-child(4),#img_05:checked~.smallHolder label:nth-child(5),#img_06:checked~.smallHolder label:nth-child(6),#img_07:checked~.smallHolder label:nth-child(7),#img_08:checked~.smallHolder label:nth-child(8),#img_09:checked~.smallHolder label:nth-child(9),#img_10:checked~.smallHolder label:nth-child(10),#img_11:checked~.smallHolder label:nth-child(11),#img_12:checked~.smallHolder label:nth-child(12){border-color:#000}
+		/* .tabArea{padding:0;margin:0;background:#fff;border:1px solid #ccc} */
+		/* .tabControl{padding:0;border-bottom:1px solid #ccc} */
+		/* .tabControl label{width:25%;padding:15px 10px;margin:0;cursor:pointer;display:block;float:left;background:#000;color:#fff;font-size:16px;font-weight:700;line-height:30px;letter-spacing:2px;text-align:center;text-transform:uppercase} */
+		/* #tab_01:checked~.tabControl label:nth-child(1),#tab_02:checked~.tabControl label:nth-child(2),#tab_03:checked~.tabControl label:nth-child(3),#tab_04:checked~.tabControl label:nth-child(4){background:#f00} */
+		/* .tabContent{padding:0} */
+		/* .tabContent label{display:none;width:100%;padding:15px 20px;margin:0;cursor:pointer;clear:both;border-bottom:1px solid #ccc;background:#000;color:#fff;font-size:16px;font-weight:700;line-height:30px;letter-spacing:2px;text-align:left;text-transform:uppercase} */
+		/* .tabText{display:none;min-height:240px} */
+		/* #tab_01:checked~.tabContent>.tabText:nth-child(2),#tab_02:checked~.tabContent>.tabText:nth-child(4),#tab_03:checked~.tabContent>.tabText:nth-child(6),#tab_04:checked~.tabContent>.tabText:nth-child(8){display:block} */
+		.StoreFooter{padding:0;margin-top:50px;border-top:1px solid #ccc;font-family:'Heebo',sans-serif}
+		.StoreFooter p:last-child{margin-bottom:0!important}
+		.FooterTop{padding:45px 0;background:#eaeaea}
+		.FooterSingle{padding:15px;color:#444;font-size:13px;font-weight:400;line-height:2;letter-spacing:1px;text-align:justify}
+		.FooterSingle h2{padding:0 0 0 20px;margin:0 0 20px;border-left:4px solid #f00;color:#000;font-size:15px;font-weight:800;line-height:30px;letter-spacing:1px;text-transform:uppercase}
+		.FooterSingle a{display:inline;text-decoration:none!important;color:#f00!important;font-size:13px;font-weight:500;letter-spacing:0;transition:all .2s ease-in;-webkit-transition:all .2s ease-in;-moz-transition:all .2s ease-in;-ms-transition:all .2s ease-in}
+		.FooterSingle a:hover{color:#000!important}
+		.FooterNav{padding:45px 0;background:#000;border-top:4px solid #f00;border-bottom:4px solid #f00;position:relative;z-index:99}
+		.FooterNav ul{display:table;padding:0;margin:0 auto;list-style:none;overflow:hidden}
+		.FooterNav ul li{display:block;float:left;padding:0 0 0 60px;position:relative}
+		.FooterNav ul li:before{content:'\f111';font-family:fontawesome;color:#f00;font-size:7px;font-weight:normal;line-height:30px;width:10px;position:absolute;top:0;left:25px}
+		.FooterNav ul li:first-child{padding:0}
+		.FooterNav ul li:first-child:before{display:none}
+		.FooterNav ul li a{display:block;text-decoration:none!important;color:#fff!important;font-size:13px;font-weight:500;line-height:30px;letter-spacing:1px;text-transform:uppercase;transition:all .2s ease-in;-webkit-transition:all .2s ease-in;-moz-transition:all .2s ease-in;-ms-transition:all .2s ease-in}
+		.FooterNav ul li a:hover{color:#f00!important}
+		.CopyRight{padding:30px 0;background:#fff;color:#222;font-size:13px;font-weight:700;line-height:20px;letter-spacing:1px;text-align:center;position:relative}
+		.CopyRight p{margin:0}
+		.CopyRight p:after{content:'dev-nath.com';color:#f00;cursor:pointer}
+		@media screen and (max-width:1199px){.PromoHolder ul li:first-child{display:none}
+		#storeMenu li{padding:0 15px}
+		.leftContainer{width:280px}
+		.rightContainer{width:690px}}
+		@media screen and (max-width:992px){.PromoHolder ul li:last-child{display:none}
+		#innerNav label[for=CSSmenu]{display:block;margin:0;color:#252525!important;font-size:15px;font-weight:800;line-height:20px;letter-spacing:1px;text-transform:uppercase;cursor:pointer}
+		#storeMenu{width:100%;height:0;position:absolute;z-index:999;left:0;top:50px;opacity:0;border:1px solid #ccc;background:#fff;-webkit-transition:all .5s ease-in;-moz-transition:all .5s ease-in;-ms-transition:all .5s ease-in;-o-transition:all .5s ease-in;transition:all .5s ease-in}
+		#storeMenu li{float:none;padding:0 20px!important}
+		#storeMenu li a{font-size:14px;line-height:30px;letter-spacing:1px;text-transform:unset}
+		#CSSmenu:checked~#storeMenu{height:220px;opacity:1}
+		#LeftPanelLabel{display:block}
+		#LeftPanelControl:checked+#LeftPanelLabel{left:298px}
+		.leftContainer{width:300px;height:100%;float:none;position:fixed;z-index:9998;top:0;left:-300px;overflow-Y:auto;background:#fff!important;border-right:2px solid #f00;padding:30px 16px 30px 14px!important;-webkit-transition:all .5s ease-in;-moz-transition:all .5s ease-in;-ms-transition:all .5s ease-in;-o-transition:all .5s ease-in;transition:all .5s ease-in}
+		#LeftPanelControl:checked~.mainBody>.container>.row>.leftContainer{left:0}
+		.rightContainer{width:100%}
+		.FooterNav ul li{padding:0 0 0 50px}}
+		@media screen and (max-width:767px){.container{max-width:570px}
+		.LogoHolder{float:none;width:100%;text-align:center}
+		.LogoHolder:after{content:'';width:2500px;height:100%;background:#f00;position:absolute;top:0;left:100%;border:0}
+		.PromoHolder{float:none}
+		.PromoHolder ul{display:table}
+		.PromoHolder ul li:first-child{display:block}
+		.SiteMapNavigator{display:none}
+		.smallHolder label{width:114px;height:114px}
+		.tabControl{display:none}
+		.tabContent label{display:block}
+		#tab_01:checked~.tabContent label:nth-child(1),#tab_02:checked~.tabContent label:nth-child(3),#tab_03:checked~.tabContent label:nth-child(5),#tab_04:checked~.tabContent label:nth-child(7){background:#f00}
+		.tabText{min-height:unset}
+		.FooterNav ul li{padding:0 0 0 20px}
+		.FooterNav ul li:before{display:none}}
+		@media screen and (max-width:599px){.welcome,.topLinks{width:100%;text-align:center}
+		.topLinks ul{float:none}
+		.PromoHolder,#storeSearchFormHolder{display:none!important}
+		#LeftPanelControl:checked+#LeftPanelLabel{left:268px}
+		.leftContainer{width:270px;left:-270px}
+		.rightInner{padding:30px 15px}
+		.smallHolder label{width:80px;height:80px}
+		.FooterNav ul{display:block}
+		.FooterNav ul li{padding:0 0 0 25px!important;float:none}
+		.FooterNav ul li:before{display:block!important;left:0}}
+		@media screen and (max-width:424px){.smallHolder label{width:54px;height:54px}}
+
+		.new-description-title {padding-top: 12px;font-size: 16px;font-weight: 700;margin: 0;}
+		.new-description-subtitle {padding-top: 10px;font-size: 15px;font-weight: 500;}
+		.new-description-single-section {line-height: 20px;font-size: 13px;padding: 15px;}
+		@media screen and (max-width:767px){.new-description-image, .available-color .new-description-subtitle {text-align: center;}}
+	</style>
+	<title>HID-Warehouse</title>
+</head>
+
+<body>
+	<div class="bodyWrapper col-xs-12">
+		<input hidden="" id="LeftPanelControl" type="checkbox"> <label for="LeftPanelControl" id="LeftPanelLabel"><i aria-hidden="true" class="fa fa-cog fa-spin" style="line-height: 36px;"></i></label>
+
+		<div class="StoreHeader col-xs-12">
+			<div class="topHeader col-xs-12">
+				<div class="container">
+					<div class="row">
+						<div class="welcome col-md-4 col-xs-6">
+							Welcome to our eBay Store
+						</div>
+
+						<div class="topLinks col-xs-6">
+							<ul>
+								<li>
+									<a href="http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&mode=0&preference=0&ssPageName=STRK:MEFS:ADDMP&sellerid=hid-warehouse" target="_blank"><i aria-hidden="true" class="fa fa-user-plus"></i> Follow Us</a>
+								</li>
+
+								<li>
+									<a href="http://contact.ebay.com/ws/eBayISAPI.dll?FindAnswers&requested=hid-warehouse&_trksid=p2050430.m2531.l4583&rt=nc&iid=272892385626" target="_blank"><i aria-hidden="true" class="fa fa-envelope"></i> Message Us</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="Header col-xs-12">
+				<div class="container">
+					<div class="row">
+						<div class="LogoHolder"><img alt="http://stores.ebay.com/HID-Warehouse" src="https://dl.dropbox.com/s/kn4iilzzhafdvrm/logo.png">
+						</div>
+
+						<div class="PromoHolder">
+							<ul>
+								<li>
+									<div class="PromoIcon">
+										<i aria-hidden="true" class="fa fa-map-marker"></i>
+									</div>
+
+									<div class="PromoText">
+										<strong>USA Seller</strong> <span>Ships from USA</span>
+									</div>
+								</li>
+
+								<li>
+									<div class="PromoIcon">
+										<i aria-hidden="true" class="fa fa-car"></i>
+									</div>
+
+									<div class="PromoText">
+										<strong>Free Shipping</strong> <span>Nationwide</span>
+									</div>
+								</li>
+
+								<li>
+									<div class="PromoIcon">
+										<i aria-hidden="true" class="fa fa-shield"></i>
+									</div>
+
+									<div class="PromoText">
+										<strong>2 Years Warranty</strong> <span>On All Items</span>
+									</div>
+								</li>
+
+								<li>
+									<div class="PromoIcon">
+										<i aria-hidden="true" class="fa fa-thumbs-o-up"></i>
+									</div>
+
+									<div class="PromoText">
+										<strong>100% Satisfaction</strong> <span>30 Day Moneyback</span>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-xs-12" id="navigation">
+				<div class="container">
+					<div class="col-xs-12" id="innerNav">
+						<input id="CSSmenu" style="display: none;" type="checkbox">
+						<label for="CSSmenu"><i aria-hidden="true" class="fa fa-bars"></i>Menu</label>
+
+						<ul id="storeMenu">
+							<li><a href="http://stores.ebay.com/HID-Warehouse" target="_blank">Home</a></li>
+
+							<li><a href="http://stores.ebay.com/HID-Warehouse/_i.html" target="_blank">Inventory</a></li>
+
+							<li><a href="http://stores.ebay.com/HID-Warehouse/Payment.html" target="_blank">Payment</a></li>
+
+							<li><a href="http://stores.ebay.com/HID-Warehouse/Delivery.html" target="_blank">Delivery</a></li>
+
+							<li><a href="http://stores.ebay.com/HID-Warehouse/Returns.html" target="_blank">Returns</a></li>
+
+							<li><a href="http://stores.ebay.com/HID-Warehouse/FAQ.html" target="_blank">FAQ</a></li>
+
+							<li><a href="http://contact.ebay.com/ws/eBayISAPI.dll?FindAnswers&requested=hid-warehouse&_trksid=p2050430.m2531.l4583&rt=nc" target="_blank">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="SiteMap col-xs-12" id="Single">
+				<div class="container">
+					<h2>Inventory</h2>
+
+					<div class="SiteMapNavigator">
+						<ul class="Devin">
+							<li><a href="http://stores.ebay.com/HID-Warehouse" target="_blank">HID-Warehouse</a> <span>&gt;</span></li>
+							<li><b>{{ title }}</b></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="mainBody col-xs-12">
+			<div class="container">
+				<div class="row">
+					<div class="leftContainer">
+						<div class="leftSingle col-xs-12">
+							<h2>STORE CATEGORIES</h2>
+
+							<div class="leftInner col-xs-12">
+								<ul>
+									<li><a href="http://stores.ebay.com/HID-Warehouse/HID-Kits-by-Bulb-Size-/_i.html?_fsub=5338865017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">HID Kits by Bulb Size</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/HID-Kits-by-Color-/_i.html?_fsub=5338866017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">HID Kits by Color</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/Bi-Xenon-HID-Kits-/_i.html?_fsub=5338895017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">Bi-Xenon HID Kits</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/Bi-Xenon-Replacement-Bulbs-/_i.html?_fsub=5338896017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">Bi-Xenon Replacement Bulbs</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/HID-Replacement-Bulbs-/_i.html?_fsub=5338867017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">HID Replacement Bulbs</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/HID-Replacement-Ballast-/_i.html?_fsub=5338868017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">HID Replacement Ballast</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/HID-Accessories-/_i.html?_fsub=5338869017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">HID Accessories</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/LED-Headlight-Kit-/_i.html?_fsub=15794693017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">LED Headlight Kit</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/LED-Seal-Beam-Headlight-/_i.html?_fsub=15794694017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">LED Seal Beam Headlight</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/LED-Interior-Kit-/_i.html?_fsub=15794695017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">LED Interior Kit</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/LED-Replacement-Bulbs-/_i.html?_fsub=15794696017&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">LED Replacement Bulbs</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/Other-/_i.html?_fsub=1&_sid=44209077&_trksid=p4634.c0.m322" target="_blank">Others</a></li>
+								</ul>
+							</div>
+						</div>
+
+
+						<!-- <div class="leftSingle col-xs-12">
+							<h2>STORE PAGES</h2>
+
+							<div class="leftInner col-xs-12">
+								<ul>
+									<li><a href="http://stores.ebay.com/HID-Warehouse" target="_blank">Home</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/_i.html" target="_blank">Inventory</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/Payment.html" target="_blank">Payment</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/Delivery.html" target="_blank">Delivery</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/Returns.html" target="_blank">Returns</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/FAQ.html" target="_blank">FAQs</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse/About.html" target="_blank">About Us</a></li>
+								</ul>
+							</div>
+						</div> -->
+
+
+						<div class="leftSingle col-xs-12">
+							<h2>HELPFUL LINKS</h2>
+
+							<div class="leftInner col-xs-12">
+								<ul>
+									<li><a href="https://www.ebay.com/usr/hid-warehouse" target="_blank">About the seller</a></li>
+
+									<li><a href="http://my.ebay.com/ws/eBayISAPI.dll?AcceptSavedSeller&mode=0&preference=0&ssPageName=STRK:MEFS:ADDMP&sellerid=hid-warehouse" target="_blank">Add to favorite</a></li>
+
+									<li><a href="http://contact.ebay.com/ws/eBayISAPI.dll?FindAnswers&requested=hid-warehouse&_trksid=p2050430.m2531.l4583&rt=nc" target="_blank">Ask a question</a></li>
+
+									<li><a href="http://stores.ebay.com/HID-Warehouse" target="_blank">Visit our store</a></li>
+
+									<li><a href="https://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid=hid-warehouse&ftab=AllFeedback" target="_blank">View feedback</a></li>
+								</ul>
+							</div>
+						</div>
+
+
+						<div class="leftSingle col-xs-12">
+							<h2>STORE NEWSLETTER!</h2>
+
+							<div class="leftInner col-xs-12">
+								<p>Add my Store to your Favorites and receive my email newsletters about new items and special promotions!</p>
+								<a class="button" href="" target="_blank">Sign Up</a>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="rightContainer">
+						<div class="rightSingle col-xs-12">
+							
+							
+							<h1>{{ title }}</h1>
+
+							<div class="rightInner col-xs-12">
+								<div class="imageContainer">
+									<input checked hidden="" id="img_01" name="imgs" type="radio">
+									<input hidden="" id="img_02" name="imgs" type="radio">
+									<input hidden="" id="img_03" name="imgs" type="radio">
+									<input hidden="" id="img_04" name="imgs" type="radio">
+
+									<div class="bigHolder col-xs-12">
+										<div class="bigSingle col-xs-12">
+											<img src="{{ images[0].big_thumb }}">
+										</div>
+										{% if images|length >= 2 %}
+										<div class="bigSingle col-xs-12">
+											<img src="{{ images[1].big_thumb }}">
+										</div>
+										{% endif %}
+										{% if images|length >= 3 %}
+										<div class="bigSingle col-xs-12">
+											<img src="{{ images[2].big_thumb }}">
+										</div>
+										{% endif %}
+										{% if images|length >= 4 %}
+										<div class="bigSingle col-xs-12">
+											<img src="{{ images[3].big_thumb }}">
+										</div>
+										{% endif %}
+									</div>
+
+									{% if images|length >= 2 %}
+									<div class="smallHolder col-xs-12">
+										<label for="img_01">
+											<img src="{{ images[0].little_thumb }}">
+										</label>
+										<label for="img_02">
+											<img src="{{ images[1].little_thumb }}">
+										</label>
+										{% if images|length >= 3 %}
+										<label for="img_03">
+											<img src="{{ images[2].little_thumb }}">
+										</label>
+										{% endif %}
+										{% if images|length >= 4 %}
+										<label for="img_04">
+											<img src="{{ images[3].little_thumb }}">
+										</label>
+										{% endif %}
+									</div>
+									{% endif %}
+								</div>
+							</div>
+						</div>
+
+
+						<div class="rightSingle col-xs-12">
+							
+							<h2>Description</h2>
+
+							<div class="rightInner col-xs-12">
+								
+								<p><img src="./images/des-banner.jpeg" alt=""></p>
+
+								<p>XtremeVision LED Interior Package comes with everything you need to upgrade your stock interior lights to LED. Every kit is fully Plug-and-Play, allowing a quick and easy installation. Each kit will come with an installation tool (trim removal) to provide a quick and easy 100% plug and play installation process.</p>
+
+								<p class="new-description-title">XtremeVision Interior LED Features</p>
+
+								<div class="row">
+									<div class="new-description-single-section col-xs-12 col-sm-6 col-lg-3">
+										<p class="new-description-image"><img src="./images/f-01.jpg" alt=""></p>
+										<p class="new-description-subtitle">Longer Lifespan</p>
+										<p>LED bulbs typically last 50,000 hours or more compared to only 2000 hours for conventional incandescent bulbs.</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-6 col-lg-3">
+										<p class="new-description-image"><img src="./images/f-02.jpg" alt=""></p>
+										<p class="new-description-subtitle">Faster Rise Time</p>
+										<p>LEDs light up 0.2 seconds faster than incandescent bulbs. This is advantageous for LED lights because it provide instant brightness.</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-6 col-lg-3">
+										<p class="new-description-image"><img src="./images/f-03.jpg" alt=""></p>
+										<p class="new-description-subtitle">Brilliant Illumination</p>
+										<p>LEDs are far more luminous than incandescent bulbs. They provide light that is not only considerably brighter, for improved visibility and vehicle conspicuity, but also much more attractive.</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-6 col-lg-3">
+										<p class="new-description-image"><img src="./images/f-04.jpg" alt=""></p>
+										<p class="new-description-subtitle">Easy Plug and Play Installation</p>
+										<p>Remove the plastic lens cover with the provided trim tool then remove the bulb from the socket. Insert the LED bulb into place to test. Note: If the bulb doesn't emit any light, please flip the bulb and try again.</p>
+									</div>
+								</div>
+
+								<p class="new-description-title">XtremeVision Interior LED Advantages</p>
+
+								<div class="row">
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/a-01.jpg" alt=""></p>
+										<p class="new-description-subtitle">Extended Lifespan</p>
+										<p>The average lifespan of XtremeVision LED is about 30,000 hours. That means you will not require changing these bulbs during the lifetime of your car. You may change your car before changing its lights. However, the same is not true for incandescent bulbs that have a filament, which can break or burn out easily as well as quickly.</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/a-02.jpg" alt=""></p>
+										<p class="new-description-subtitle">Less Energy Consumption</p>
+										<p>XtremeVision LED bulbs consume exceptionally less energy compared to incandescent bulbs. This is because LED lights convert maximum energy into lights-where as incandescent converts only 20 percent of energy into light. As a result, you conserve your vehicle energy by using LED bulbs.</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/a-03.jpg" alt=""></p>
+										<p class="new-description-subtitle">Quick Light Response</p>
+										<p>The response time of LED lights is much quicker than incandescent bulbs. This improves the safety of your car, as vehicles around you can see the indications on your car turn signal and brake in real time.</p>
+									</div>
+								</div>
+
+								<p class="new-description-title">Available Colors</p>
+
+								<div class="row available-color">
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/c-pure-white.jpg" alt=""></p>
+										<p class="new-description-subtitle">Pure White</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/c-cool-white.jpg" alt=""></p>
+										<p class="new-description-subtitle">Cool White</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/c-blue.jpg" alt=""></p>
+										<p class="new-description-subtitle">Blue</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/c-green.jpg" alt=""></p>
+										<p class="new-description-subtitle">Green</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/c-red.jpg" alt=""></p>
+										<p class="new-description-subtitle">Red</p>
+									</div>
+									<div class="new-description-single-section col-xs-12 col-sm-4">
+										<p class="new-description-image"><img src="./images/c-pink.jpg" alt=""></p>
+										<p class="new-description-subtitle">Pink</p>
+									</div>
+								</div>
+							
+							</div>
+						</div>
+
+
+						<!-- <div class="rightSingle col-xs-12">
+							
+							<h2>Description</h2>
+
+							<div class="rightInner col-xs-12">
+								
+								<p>{{ description }}</p>
+								
+								<ul>
+									{% for bullet in bullets %}
+										<li>{{ bullet }}</li>
+									{% endfor %}
+								</ul>
+								
+							</div>
+						</div> -->
+
+
+						<!-- <div class="tabArea col-xs-12">
+							<input checked hidden="" id="tab_01" name="tabs" type="radio"> <input hidden="" id="tab_02" name="tabs" type="radio"> <input hidden="" id="tab_03" name="tabs" type="radio"> <input hidden="" id="tab_04" name="tabs" type="radio">
+
+							<div class="tabControl col-xs-12">
+								<label for="tab_01">Payment</label>
+								<label for="tab_02">Shipping</label>
+								<label for="tab_03">Returns</label>
+								<label for="tab_04">FAQs</label>
+							</div>
+
+
+							<div class="tabContent col-xs-12">
+								<label for="tab_01">Payment</label>
+								<div class="tabText rightInner col-xs-12">
+									<p>We accept PayPal, MasterCard, Visa, Discover, and American Express.<br>
+									Immediate payment is required for Buy it Now items. We charge sales tax for CA residents.<br>
+									State taxes will be calculated at checkout.</p>
+								</div>
+								
+								<label for="tab_02">Shipping</label>
+								<div class="tabText rightInner col-xs-12">
+									<p>All products will be shipped <strong>within 24 hours</strong> during normal business orders from date of order, unless otherwise stated. The products will be shipped via UPS or USPS, depending on the shipping method you chose. You will be notify via email with a tracking number when the package leave the warehouse.</p>
+
+									<p>When you place an order, we will estimate shipping and delivery dates for you based on the availability of your items and the shipping options you choose. Depending on the shipping provider you choose, shipping date estimates may appear on the shipping quotes page.</p>
+
+									<p>Please also note that the shipping rates for many items we sell are weight-based. The weight of any such item can be found on its detail page. To reflect the policies of the shipping companies we use, all weights will be rounded up to the next full pound.</p>
+								</div>
+								
+								<label for="tab_03">Returns</label>
+								<div class="tabText rightInner col-xs-12">
+									<p>We stand behind our products and items can be returned or exchanged within 30 days from the date you receive your merchandise. Return shipping is the responsibility of the buyer unless the return is a result of our error. Please contact us if you would like to process a return or exchange.</p>
+								</div>
+								
+								<label for="tab_04">FAQs</label>
+								<div class="tabText rightInner col-xs-12">
+									<p>If you have any question, please visit our <strong>store FAQs page</strong>. If the answers are not helpful for you, please contact us through eBay message. We will response as early as possible to your question.</p>
+								</div>
+							</div>
+						</div> -->
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="StoreFooter col-xs-12">
+			<div class="FooterTop col-xs-12">
+				<div class="container">
+					<div class="row">
+						<div class="FooterSingle col-sm-4 col-xs-12">
+							<h2>About Us</h2>
+
+							<p><strong>HID-Warehouse</strong> is a wholesale supplier of HID and LED lighting products based in Los Angeles, California, USA. Our company is the successful integration of development, manufacturing, sales, and customer service. <a href="http://stores.ebay.com/HID-Warehouse/About.html" target="_blank">Learn More</a></p>
+						</div>
+
+
+						<div class="FooterSingle col-sm-4 col-xs-12">
+							<h2>30 Day Returns</h2>
+
+							<p>We stand behind our products and items can be returned or exchanged within 30 days from the date you receive your merchandise. Return shipping is the responsibility of the buyer unless the return is a result of our error. Please contact us if you would like to process a return or exchange.</p>
+						</div>
+
+
+						<div class="FooterSingle col-sm-4 col-xs-12">
+							<h2>2 Year Warranty</h2>
+
+							<p>2 Year Warranty covers any factory defects with the ballast and bulbs. Ballast and bulbs are warranted for a period of two (2) year from the date of the purchase. Warranty does not cover breakage due to improper installation, shipping or handling.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="FooterNav col-xs-12">
+				<div class="container">
+					<ul>
+						<li><a href="http://stores.ebay.com/HID-Warehouse" target="_blank">Home</a></li>
+
+						<li><a href="http://stores.ebay.com/HID-Warehouse/_i.html" target="_blank">Inventory</a></li>
+
+						<li><a href="http://stores.ebay.com/HID-Warehouse/Payment.html" target="_blank">Payment</a></li>
+
+						<li><a href="http://stores.ebay.com/HID-Warehouse/Delivery.html" target="_blank">Delivery</a></li>
+
+						<li><a href="http://stores.ebay.com/HID-Warehouse/Returns.html" target="_blank">Returns</a></li>
+
+						<li><a href="http://stores.ebay.com/HID-Warehouse/FAQ.html" target="_blank">FAQ</a></li>
+
+						<li><a href="http://stores.ebay.com/HID-Warehouse/About.html" target="_blank">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="CopyRight col-xs-12">
+				<div class="container">
+					<p>HID-WAREHOUSE &copy; 2017 Developed by&nbsp;</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
